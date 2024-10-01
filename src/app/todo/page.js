@@ -117,7 +117,7 @@ export default function Todo() {
     <div>
       <div className="font-extrabold text-4xl p-4 mb-10">TODO APP</div>
       <div className="flex flex-col text-center justify-center gap-4">
-        <div className="flex flex-row gap-4 mb-4">
+        <div className="flex flex-row gap-4 mb-10">
           <input
             className="p-2 rounded-xl text-black"
             placeholder="Enter Todo"
@@ -132,33 +132,38 @@ export default function Todo() {
           </button>
         </div>
         <div className="flex flex-col gap-4">
-          <p className="text-2xl font-bold">Things to do:</p>
+          <p className="text-3xl font-bold">Things to do:</p>
           <div>
-            <ul className="flex flex-col gap-2">
-              {todos.map((todo) => (
-                <li
-                  className="p-2 flex items-center justify-between rounded-xl border"
-                  key={todo.id} // Use todo.id as the key
-                >
-                  {todo.task}{" "}
-                  {/* Display the task property instead of the todo object */}
-                  <div className="flex gap-2">
-                    <button
-                      className="p-1 bg-blue-800 rounded-md"
-                      onClick={() => handleUpdate(todo.id)} // Pass todo.id here
-                    >
-                      Update
-                    </button>
-                    <button
-                      className="p-1 bg-red-800 rounded-md"
-                      onClick={() => handleDelete(todo.id)} // Pass todo.id here
-                    >
-                      Delete
-                    </button>
-                  </div>
-                </li>
-              ))}
-            </ul>
+            {todos.length === 0 ? (
+              <p className="text-center text-gray-300 text-xs font-semibold italic">
+                Nothing to show here...
+              </p> // Display message when no todos
+            ) : (
+              <ul className="flex flex-col gap-2">
+                {todos.map((todo) => (
+                  <li
+                    className="p-2 flex items-center justify-between rounded-xl border"
+                    key={todo.id} // Use todo.id as the key
+                  >
+                    {todo.task}{" "}
+                    <div className="flex gap-2">
+                      <button
+                        className="p-1 bg-blue-800 rounded-md"
+                        onClick={() => handleUpdate(todo.id)} // Pass todo.id here
+                      >
+                        Update
+                      </button>
+                      <button
+                        className="p-1 bg-red-800 rounded-md"
+                        onClick={() => handleDelete(todo.id)} // Pass todo.id here
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         </div>
       </div>
