@@ -31,10 +31,12 @@ export default function Todo() {
   const fetchTodos = async () => {
     try {
       const querySnapshot = await getDocs(collection(db, "todos"));
-      const todosList = querySnapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
+      const todosList = querySnapshot.docs
+        .map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }))
+        .filter((todo) => todo.userId === user.uid);
       setTodos(todosList);
     } catch (error) {
       console.error("Error fetching todos: ", error);
