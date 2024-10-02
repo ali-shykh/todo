@@ -10,7 +10,7 @@ export default function Home() {
       <div className="flex justify-end p-4">
         <button
           onClick={logout}
-          className="bg-red-500 text-white p-2 rounded-lg"
+          className="bg-red-700 text-white p-2 rounded-lg"
         >
           Logout
         </button>
